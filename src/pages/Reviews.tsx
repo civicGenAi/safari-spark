@@ -61,7 +61,7 @@ const ReviewsPage = () => (
         <AnimatedSection delay={0.4}>
           <div className="mt-20 text-center bg-card border border-border rounded-2xl p-10 max-w-2xl mx-auto">
             <h3 className="font-display text-2xl font-bold text-foreground mb-3">
-              Traveled with Kim Safari?
+              Traveled with Kim Safaris?
             </h3>
             <p className="text-muted-foreground mb-8">
               Share your experience and help fellow travelers.
