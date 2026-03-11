@@ -8,8 +8,7 @@ const Footer = () => (
         {/* Brand */}
         <div>
           <div className="flex items-center gap-2 mb-4">
-            <span className="font-display text-xl font-bold tracking-[0.15em] text-foreground">KIM</span>
-            <span className="font-display text-xl font-bold tracking-[0.15em] text-primary">SAFARIS</span>
+            <img src="/logo.png" alt="Kim Safaris Logo" className="h-8 md:h-10 w-auto" />
           </div>
           <p className="text-muted-foreground text-sm leading-relaxed">
             Tanzania's premium transfer & safari route service. Arrive in style, explore in comfort. — Kim Safaris

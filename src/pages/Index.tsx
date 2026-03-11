@@ -14,13 +14,15 @@ const reviews = [
 ];
 
 const routes = [
-  { from: "JRO Airport", to: "Arusha", landmark: "Kilimanjaro Int'l" },
-  { from: "JRO Airport", to: "Moshi", landmark: "Mt. Kilimanjaro" },
-  { from: "JRO Airport", to: "Serengeti Gate", landmark: "Serengeti NP" },
-  { from: "DAR Airport", to: "City Center", landmark: "Dar es Salaam" },
-  { from: "ZNZ Airport", to: "Stone Town", landmark: "Zanzibar" },
-  { from: "Arusha", to: "Ngorongoro", landmark: "Crater Highlands" },
-  { from: "Arusha", to: "Tarangire", landmark: "Tarangire NP" },
+  { from: "Arusha", to: "Kilimanjaro Airport (JRO)", landmark: "International Airport" },
+  { from: "Kilimanjaro Airport (JRO)", to: "Arusha", landmark: "City Transfer" },
+  { from: "Arusha", to: "Arusha Airport (ARK)", landmark: "Domestic Airport" },
+  { from: "Arusha", to: "Karatu", landmark: "Safari Gateway" },
+  { from: "Arusha", to: "Namanga", landmark: "Border Town" },
+  { from: "Arusha", to: "Moshi", landmark: "Base of Kilimanjaro" },
+  { from: "Arusha", to: "Materuni Waterfalls", landmark: "Scenic Day Trip" },
+  { from: "Arusha", to: "City Tour (Full Day)", landmark: "Arusha Exploration" },
+  { from: "Arusha", to: "City Tour (Half Day)", landmark: "Arusha Highlights" },
 ];
 
 const stats = [

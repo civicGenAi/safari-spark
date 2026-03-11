@@ -28,18 +28,12 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "glass-nav py-3 border-b border-border" : "bg-transparent py-5"
-        }`}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-nav py-3 border-b border-border" : "bg-transparent py-5"
+          }`}
       >
         <div className="container-max flex items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link to="/" className="flex items-center gap-2">
-            <span className="font-display text-2xl font-bold tracking-[0.15em] text-foreground">
-              KIM
-            </span>
-            <span className="font-display text-2xl font-bold tracking-[0.15em] text-primary">
-              SAFARIS
-            </span>
+            <img src="/logo.png" alt="Kim Safaris Logo" className="h-8 md:h-10 w-auto" />
           </Link>
 
           {/* Desktop nav */}
@@ -48,11 +42,10 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 to={link.path}
-                className={`font-body text-sm tracking-wide transition-colors duration-300 hover:text-primary ${
-                  location.pathname === link.path
+                className={`font-body text-sm tracking-wide transition-colors duration-300 hover:text-primary ${location.pathname === link.path
                     ? "text-primary"
                     : "text-muted-foreground"
-                }`}
+                  }`}
               >
                 {link.label}
               </Link>
@@ -91,11 +84,10 @@ const Navbar = () => {
               >
                 <Link
                   to={link.path}
-                  className={`font-display text-3xl tracking-wide transition-colors ${
-                    location.pathname === link.path
+                  className={`font-display text-3xl tracking-wide transition-colors ${location.pathname === link.path
                       ? "text-primary"
                       : "text-foreground hover:text-primary"
-                  }`}
+                    }`}
                 >
                   {link.label}
                 </Link>
