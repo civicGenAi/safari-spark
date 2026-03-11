@@ -352,7 +352,7 @@ const Index = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <Button variant="gold" size="xl" className="h-16 px-10 text-lg uppercase tracking-widest font-display w-full sm:w-auto" asChild>
+                <Button variant="gold" size="xl" className="h-16 px-4 sm:px-10 text-base sm:text-lg uppercase tracking-widest font-display w-full sm:w-auto" asChild>
                   <Link to="/booking">Book Your Transfer Now</Link>
                 </Button>
 
@@ -390,7 +390,7 @@ const RatingModal = () => {
       <Button
         variant="outline"
         size="xl"
-        className="h-16 px-10 text-lg uppercase tracking-widest font-display border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto"
+        className="h-16 px-4 sm:px-10 text-base sm:text-lg uppercase tracking-widest font-display border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full sm:w-auto"
         onClick={() => { setIsOpen(true); setStep(1); setStars(0); }}
       >
         Rate Our Service
