@@ -9,7 +9,7 @@ const reviews = [
   { stars: 5, text: "Booked a private route to Serengeti gate. Professional, punctual and great company during the drive. Will use again.", name: "Johan K.", flag: "🇳🇱", date: "Feb 2025" },
   { stars: 5, text: "Best transfer service in Arusha. WhatsApp booking was so easy. Driver spoke good English and was very helpful.", name: "Amina T.", flag: "🇦🇪", date: "Mar 2025" },
   { stars: 5, text: "Arrived late at night, they were still there waiting. Felt safe the whole journey. True professionals.", name: "Lucas B.", flag: "🇩🇪", date: "Mar 2025" },
-  { stars: 5, text: "Used Kim Safari for our entire 2-week Tanzania trip. Every transfer was perfect. The drivers are knowledgeable and friendly.", name: "Emily R.", flag: "🇺🇸", date: "Dec 2024" },
+  { stars: 5, text: "Used Kim Safaris for our entire 2-week Tanzania trip. Every transfer was perfect. The drivers are knowledgeable and friendly.", name: "Emily R.", flag: "🇺🇸", date: "Dec 2024" },
   { stars: 5, text: "From Zanzibar airport to Stone Town in a clean, comfortable car. Great communication via WhatsApp. Five stars!", name: "Pierre L.", flag: "🇫🇷", date: "Nov 2024" },
   { stars: 5, text: "Excellent service from Arusha to Ngorongoro. Driver shared amazing stories about the area. Worth every penny.", name: "Yuki T.", flag: "🇯🇵", date: "Feb 2025" },
   { stars: 5, text: "We booked last-minute and they still delivered. Vehicle was waiting, driver was smiling. Couldn't ask for more.", name: "Marco S.", flag: "🇮🇹", date: "Jan 2025" },
