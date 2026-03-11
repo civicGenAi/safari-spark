@@ -68,7 +68,7 @@ const ReviewsPage = () => (
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="gold" size="lg" asChild>
-                <a href="https://maps.google.com/?q=Kim+Safari+Arusha+Tanzania" target="_blank" rel="noopener noreferrer">
+                <a href="https://maps.google.com/?q=Kim+Safaris+Arusha+Tanzania" target="_blank" rel="noopener noreferrer">
                   <ExternalLink size={18} /> Write a Review on Google
                 </a>
               </Button>
