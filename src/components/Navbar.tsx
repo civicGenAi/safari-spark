@@ -36,7 +36,7 @@ const Navbar = () => {
             <img
               src="/logo.png"
               alt="Kim Safaris Logo"
-              className="h-10 md:h-14 lg:h-16 w-auto transition-transform duration-500 group-hover:scale-105"
+              className="h-14 md:h-16 lg:h-20 w-auto transition-transform duration-500 group-hover:scale-105"
             />
           </Link>
 
