@@ -20,7 +20,7 @@ const ReviewsPage = () => (
     <PageHero
       image={heroImage}
       title="Traveler Stories"
-      subtitle="Real experiences from real travelers who chose Kim Safari."
+      subtitle="Real experiences from real travelers who chose Kim Safaris."
     />
 
     <section className="section-padding bg-background">
