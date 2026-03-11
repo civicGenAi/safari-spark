@@ -43,9 +43,9 @@ const Index = () => {
           alt="Tanzania safari landscape"
           className="absolute inset-0 w-full h-full object-cover"
           loading="eager"
-          initial={{ scale: 1.3, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 3, ease: "easeOut" }}
+          initial={{ scale: 1 }}
+          animate={{ scale: [1, 1.15, 1] }}
+          transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
         />
         {/* Cinematic letterbox bars */}
         <motion.div
@@ -61,7 +61,8 @@ const Index = () => {
           transition={{ duration: 1.6, delay: 0.4, ease: [0.76, 0, 0.24, 1] }}
         />
         <div className="absolute inset-0 hero-overlay" />
-        <div className="absolute inset-0 grain-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/40 to-transparent w-full md:w-2/3 z-10" />
+        <div className="absolute inset-0 grain-overlay z-10" />
 
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <motion.div
@@ -110,81 +111,97 @@ const Index = () => {
           </motion.div>
         </div>
 
-        {/* Scroll cue */}
+        {/* Scroll cue (Left Sidebar Indicator) */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 3 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+          className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-6 z-30 mix-blend-difference text-white/50"
         >
-          <span className="text-muted-foreground text-xs tracking-widest uppercase">Scroll</span>
-          <ChevronDown size={20} className="text-primary animate-bounce" />
+          <span className="text-[10px] tracking-widest uppercase writing-vertical origin-center rotate-180 mb-4 font-display">Scroll to Explore</span>
+          <div className="w-[1px] h-32 bg-white/20 relative overflow-hidden">
+            <motion.div
+              className="w-full h-1/3 bg-white absolute top-0"
+              animate={{ y: ["-100%", "300%"] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+            />
+          </div>
+        </motion.div>
+
+        {/* Integrated Sleek Stats (Bottom of Hero) */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.8, duration: 1 }}
+          className="absolute bottom-0 left-0 right-0 z-30 px-4 pb-8 md:pb-12 bg-gradient-to-t from-background to-transparent pt-32"
+        >
+          <div className="container-max">
+            <div className="flex flex-wrap items-center justify-center md:justify-between gap-8 md:gap-12 opacity-80 backdrop-blur-sm border-t border-white/5 pt-8">
+              {stats.map((s, i) => (
+                <div key={s.label} className="flex items-center gap-4 group">
+                  <div className="w-10 h-10 flex text-primary items-center justify-center group-hover:scale-110 transition-transform">
+                    <s.icon strokeWidth={1.5} size={32} />
+                  </div>
+                  <div className="flex flex-col text-left">
+                    <div className="font-display text-2xl font-light text-foreground tracking-wide">
+                      <CountUp end={s.value} suffix={s.suffix} />
+                    </div>
+                    <span className="text-xs text-muted-foreground uppercase tracking-widest">{s.label}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       </section>
 
-      {/* Stats — Creative Cards */}
-      <section className="relative -mt-16 z-30 px-4">
-        <div className="container-max">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {stats.map((s, i) => (
-              <motion.div
-                key={s.label}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 2.6 + i * 0.15, duration: 0.6 }}
-                className="relative group bg-card/90 backdrop-blur-xl border border-border rounded-2xl p-6 text-center overflow-hidden hover:gold-border-glow transition-all duration-500"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                <div className="relative z-10">
-                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
-                    <s.icon size={20} className="text-primary" />
-                  </div>
-                  <CountUp end={s.value} suffix={s.suffix} />
-                  <p className="text-muted-foreground text-xs mt-1 tracking-wide uppercase">{s.label}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Services Overview */}
-      <section className="section-padding bg-background">
-        <div className="container-max">
+      <section className="section-padding bg-background relative overflow-hidden">
+        {/* Subtle Map/Compass Background */}
+        <div className="absolute inset-0 bg-map-pattern opacity-50 z-0 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-[120px] pointer-events-none -translate-y-1/2 translate-x-1/2" />
+
+        <div className="container-max relative z-10">
           <AnimatedSection>
             <div className="text-center mb-16">
               <span className="text-primary text-sm tracking-widest uppercase font-body">What We Offer</span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mt-3">Our Services</h2>
+              <h2 className="font-display text-4xl sm:text-5xl font-bold text-foreground mt-3">Signature Services</h2>
             </div>
           </AnimatedSection>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
                 icon: Plane,
                 title: "Airport Transfers",
                 desc: "Kilimanjaro (JRO), Dar es Salaam (DAR), Zanzibar (ZNZ). Punctual, tracked, stress-free arrivals and departures.",
+                delay: 0,
               },
               {
                 icon: Building2,
                 title: "Hotel Transfers",
-                desc: "City to hotel, hotel to city. Clean vehicles, professional drivers who know every route.",
+                desc: "City to hotel, hotel to city. Clean vehicles, professional drivers who know every route inside out.",
+                delay: 0.15,
               },
               {
                 icon: Compass,
                 title: "Private Routes",
-                desc: "Custom journeys to safari gates, beaches, towns, national parks. Full flexibility, your schedule.",
+                desc: "Custom journeys to safari gates, beaches, towns, national parks. Full flexibility, completely on your schedule.",
+                delay: 0.3,
               },
-            ].map((s, i) => (
-              <AnimatedSection key={s.title} delay={i * 0.15}>
-                <div className="group bg-card border border-border rounded-2xl p-8 hover:-translate-y-2 transition-all duration-500 hover:gold-border-glow">
-                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
-                    <s.icon size={24} className="text-primary" />
+            ].map((s) => (
+              <AnimatedSection key={s.title} delay={s.delay}>
+                <div className="group relative bg-surface-1/80 backdrop-blur-sm border border-border p-8 hover:-translate-y-2 transition-all duration-500 hover:gold-border-glow overflow-hidden h-full flex flex-col">
+                  {/* Decorative corner accent */}
+                  <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div className="w-14 h-14 rounded-full bg-surface-2 border border-white/5 flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-primary/10 transition-all duration-500">
+                    <s.icon strokeWidth={1.5} size={28} className="text-primary" />
                   </div>
-                  <h3 className="font-display text-xl font-semibold text-foreground mb-3">{s.title}</h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed mb-4">{s.desc}</p>
-                  <Link to="/services" className="inline-flex items-center gap-1 text-primary text-sm hover:gap-2 transition-all">
-                    Learn More <ArrowRight size={14} />
+                  <h3 className="font-display text-2xl font-light text-foreground mb-4">{s.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed mb-8 flex-1">{s.desc}</p>
+                  <Link to="/services" className="inline-flex items-center gap-2 text-primary font-display tracking-widest text-xs uppercase hover:gap-3 transition-all mt-auto group/link">
+                    Explore <ArrowRight size={14} className="group-hover/link:animate-pulse" />
                   </Link>
                 </div>
               </AnimatedSection>
@@ -194,95 +211,139 @@ const Index = () => {
       </section>
 
       {/* Popular Routes */}
-      <section className="section-padding bg-surface-1 border-y border-border">
-        <div className="container-max">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <span className="text-primary text-sm tracking-widest uppercase font-body">Explore</span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mt-3">Popular Routes</h2>
-            </div>
-          </AnimatedSection>
+      <section className="section-padding bg-surface-1 border-y border-border relative overflow-hidden">
+        {/* Subtle contour lines / road background graphic */}
+        <div className="absolute inset-0 z-0 pointer-events-none opacity-20"
+          style={{
+            backgroundImage: "repeating-linear-gradient(45deg, transparent, transparent 10px, hsl(0 0% 20%) 10px, hsl(0 0% 20%) 11px)"
+          }}
+        />
 
-          <div className="overflow-x-auto pb-4 -mx-4 px-4">
-            <div className="flex gap-4 min-w-max">
-              {routes.map((r, i) => (
-                <AnimatedSection key={`${r.from}-${r.to}`} delay={i * 0.08}>
-                  <div className="w-64 bg-card border border-border rounded-2xl p-6 hover:-translate-y-1 transition-all duration-300 hover:gold-border-glow flex flex-col">
-                    <div className="flex items-center gap-2 text-primary mb-3">
-                      <MapPin size={16} />
-                      <span className="text-xs text-muted-foreground">{r.landmark}</span>
+        <div className="container-max relative z-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+            <AnimatedSection>
+              <span className="text-primary text-sm tracking-widest uppercase font-body">Explore Tanzania</span>
+              <h2 className="font-display text-4xl sm:text-5xl font-bold text-foreground mt-3">Popular Routes</h2>
+            </AnimatedSection>
+            <AnimatedSection delay={0.2}>
+              <Button variant="outline" className="border-border text-foreground hover:bg-surface-2 uppercase tracking-widest text-xs font-display" asChild>
+                <Link to="/routes">View All Routes</Link>
+              </Button>
+            </AnimatedSection>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+            {routes.map((r, i) => (
+              <AnimatedSection key={`${r.from}-${r.to}`} delay={i * 0.05}>
+                <Link to={`/booking?route=${encodeURIComponent(`${r.from} → ${r.to}`)}`} className="block group">
+                  <div className="bg-card border border-border p-5 hover:gold-border-glow transition-all duration-300 relative overflow-hidden h-full">
+                    {/* Hover slash effect */}
+                    <div className="absolute inset-0 bg-primary/5 -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out" />
+
+                    <div className="relative z-10">
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="flex items-center gap-2 text-primary">
+                          <MapPin size={14} />
+                          <span className="text-[10px] tracking-widest uppercase text-muted-foreground">{r.landmark}</span>
+                        </div>
+                        <ArrowRight size={14} className="text-muted-foreground group-hover:text-primary transition-colors group-hover:translate-x-1" />
+                      </div>
+
+                      <div className="space-y-1">
+                        <h3 className="font-display text-lg font-light text-foreground">{r.from}</h3>
+                        <div className="w-4 h-px bg-border group-hover:bg-primary transition-colors" />
+                        <h3 className="font-display text-lg font-semibold text-foreground">{r.to}</h3>
+                      </div>
                     </div>
-                    <h3 className="font-display text-lg font-semibold text-foreground mb-1">{r.from}</h3>
-                    <div className="text-primary text-sm mb-1">→</div>
-                    <h3 className="font-display text-lg font-semibold text-foreground mb-4">{r.to}</h3>
-                    <Button variant="gold-outline" size="sm" className="mt-auto" asChild>
-                      <Link to={`/booking?route=${encodeURIComponent(`${r.from} → ${r.to}`)}`}>
-                        Book This Route
-                      </Link>
-                    </Button>
                   </div>
-                </AnimatedSection>
-              ))}
-            </div>
+                </Link>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Reviews */}
-      <section className="section-padding bg-background">
-        <div className="container-max">
-          <AnimatedSection>
-            <div className="text-center mb-12">
-              <span className="text-primary text-sm tracking-widest uppercase font-body">Testimonials</span>
-              <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mt-3">What Our Clients Say</h2>
-              <p className="text-muted-foreground mt-2">Real experiences from real travelers — verified on Google</p>
-            </div>
-          </AnimatedSection>
+      {/* Reviews (Marquee) */}
+      <section className="section-padding bg-background relative overflow-hidden">
+        {/* Subtle Quotes Background Content */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30rem] font-serif text-primary/5 pointer-events-none select-none z-0">
+          "
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {reviews.map((r, i) => (
-              <AnimatedSection key={r.name} delay={i * 0.1}>
-                <div className="bg-card border border-border rounded-2xl p-6 hover:gold-border-glow transition-all duration-300">
-                  <div className="flex gap-1 mb-3">
-                    {Array.from({ length: r.stars }).map((_, j) => (
-                      <Star key={j} size={16} className="text-primary fill-primary" />
-                    ))}
-                  </div>
-                  <p className="text-foreground text-sm leading-relaxed mb-4 italic">"{r.text}"</p>
-                  <div className="flex items-center justify-between text-xs text-muted-foreground">
-                    <span>{r.name} {r.flag}</span>
-                    <span>{r.date}</span>
-                  </div>
+        <div className="container-max relative z-10 mb-12 text-center">
+          <AnimatedSection>
+            <span className="text-primary text-sm tracking-widest uppercase font-body">Testimonials</span>
+            <h2 className="font-display text-4xl sm:text-5xl font-bold text-foreground mt-3">What Our Clients Say</h2>
+          </AnimatedSection>
+        </div>
+
+        <div className="relative z-10 w-full overflow-hidden flex flex-col gap-6">
+          {/* Edge fades for the marquee */}
+          <div className="absolute inset-y-0 left-0 w-12 md:w-32 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-12 md:w-32 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
+
+          {/* Row 1: Moves Left */}
+          <div className="flex w-max animate-marquee-left hover:[animation-play-state:paused] gap-6 px-3">
+            {[...reviews, ...reviews].map((r, i) => (
+              <div key={`${r.name}-row1-${i}`} className="w-80 md:w-96 bg-card border border-border p-6 hover:gold-border-glow transition-all duration-300 flex-shrink-0">
+                <div className="flex gap-1 mb-4">
+                  {Array.from({ length: r.stars }).map((_, j) => (
+                    <Star key={j} size={14} className="text-primary fill-primary" />
+                  ))}
                 </div>
-              </AnimatedSection>
+                <p className="text-foreground text-sm leading-relaxed mb-6 italic">"{r.text}"</p>
+                <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto">
+                  <span className="font-medium text-foreground">{r.name} {r.flag}</span>
+                  <span>{r.date}</span>
+                </div>
+              </div>
             ))}
           </div>
 
-          <AnimatedSection delay={0.4}>
-            <div className="text-center mt-12">
-              <p className="text-foreground mb-4">Happy with Kim Safaris? Help other travelers find us.</p>
-              <Button variant="gold" size="lg" asChild>
-                <a href="https://maps.google.com/?q=Kim+Safaris+Arusha+Tanzania" target="_blank" rel="noopener noreferrer">
-                  Leave a Review on Google Maps
-                </a>
-              </Button>
-            </div>
-          </AnimatedSection>
+          {/* Row 2: Moves Right (Hidden on Mobile) */}
+          <div className="hidden md:flex w-max animate-marquee-right hover:[animation-play-state:paused] gap-6 px-3">
+            {[...reviews, ...reviews].reverse().map((r, i) => (
+              <div key={`${r.name}-row2-${i}`} className="w-80 md:w-96 bg-card border border-border p-6 hover:gold-border-glow transition-all duration-300 flex-shrink-0">
+                <div className="flex gap-1 mb-4">
+                  {Array.from({ length: r.stars }).map((_, j) => (
+                    <Star key={j} size={14} className="text-primary fill-primary" />
+                  ))}
+                </div>
+                <p className="text-foreground text-sm leading-relaxed mb-6 italic">"{r.text}"</p>
+                <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto">
+                  <span className="font-medium text-foreground">{r.name} {r.flag}</span>
+                  <span>{r.date}</span>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Booking CTA */}
-      <section className="section-padding bg-surface-1 relative overflow-hidden border-t border-border">
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5" />
-        <div className="container-max relative z-10 text-center">
+      <section className="section-padding relative overflow-hidden">
+        {/* Dynamic gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent to-surface-1 z-0" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,hsl(43_52%_54%_/_0.15),transparent_50%)] z-0" />
+
+        <div className="container-max relative z-10">
           <AnimatedSection>
-            <h2 className="font-display text-3xl sm:text-4xl font-bold text-foreground mb-4">Ready to Ride?</h2>
-            <p className="text-muted-foreground text-lg max-w-xl mx-auto mb-8">
-              Fill our simple form and your booking goes straight to WhatsApp. No app needed.
-            </p>
-            <Button variant="gold" size="xl" asChild>
-              <Link to="/booking">Book Your Transfer Now</Link>
-            </Button>
+            <div className="max-w-4xl mx-auto bg-surface-1/50 backdrop-blur-md border border-border p-12 md:p-16 text-center shadow-2xl overflow-hidden relative group">
+              {/* Corner accents */}
+              <div className="absolute top-0 left-0 w-24 h-24 bg-primary/20 blur-[50px] group-hover:bg-primary/30 transition-colors" />
+              <div className="absolute bottom-0 right-0 w-32 h-32 bg-primary/10 blur-[60px] group-hover:bg-primary/30 transition-colors" />
+
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground mb-6 uppercase tracking-wider">
+                Ready to <span className="text-primary italic">Ride?</span>
+              </h2>
+              <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto mb-10 font-light">
+                Fill our simple form and your booking goes straight to WhatsApp.
+                No apps, no stress, just a premium transfer waiting for you.
+              </p>
+              <Button variant="gold" size="xl" className="h-16 px-10 text-lg uppercase tracking-widest font-display" asChild>
+                <Link to="/booking">Book Your Transfer Now</Link>
+              </Button>
+            </div>
           </AnimatedSection>
         </div>
       </section>
