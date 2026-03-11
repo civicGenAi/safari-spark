@@ -58,7 +58,7 @@ const Footer = () => (
       </div>
 
       <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-        © 2025 Kim Safari. All rights reserved.
+        © 2025 Kim Safaris. All rights reserved.
       </div>
     </div>
   </footer>
