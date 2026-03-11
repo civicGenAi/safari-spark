@@ -47,7 +47,7 @@ const BookingPage = () => {
     }
 
     setLoading(true);
-    const msg = `🚗 *NEW BOOKING — KIM SAFARI*%0A%0A👤 Name: ${form.name}%0A📞 Phone: ${form.phone}%0A🛎️ Service: ${form.service}%0A📍 Pickup: ${form.pickup}%0A🏁 Drop-off: ${form.dropoff}%0A📅 Date & Time: ${form.date}%0A👥 Passengers: ${form.passengers}%0A📝 Notes: ${form.notes || "None"}%0A%0ASent via KimSafari.com`;
+    const msg = `🚗 *NEW BOOKING — KIM SAFARIS*%0A%0A👤 Name: ${form.name}%0A📞 Phone: ${form.phone}%0A🛎️ Service: ${form.service}%0A📍 Pickup: ${form.pickup}%0A🏁 Drop-off: ${form.dropoff}%0A📅 Date & Time: ${form.date}%0A👥 Passengers: ${form.passengers}%0A📝 Notes: ${form.notes || "None"}%0A%0ASent via KimSafaris.com`;
     
     setTimeout(() => {
       window.open(`https://wa.me/255756997609?text=${msg}`, "_blank");

@@ -38,7 +38,7 @@ const Navbar = () => {
               KIM
             </span>
             <span className="font-display text-2xl font-bold tracking-[0.15em] text-primary">
-              SAFARI
+              SAFARIS
             </span>
           </Link>
 

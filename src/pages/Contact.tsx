@@ -13,7 +13,7 @@ const ContactPage = () => {
     e.preventDefault();
     if (!form.name.trim() || !form.message.trim()) return;
     setLoading(true);
-    const msg = `Hi Kim Safari! My name is ${form.name}. ${form.message}`;
+    const msg = `Hi Kim Safaris! My name is ${form.name}. ${form.message}`;
     setTimeout(() => {
       window.open(`https://wa.me/255756997609?text=${encodeURIComponent(msg)}`, "_blank");
       setLoading(false);
@@ -84,7 +84,7 @@ const ContactPage = () => {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    title="Kim Safari Location - Arusha, Tanzania"
+                    title="Kim Safaris Location - Arusha, Tanzania"
                   />
                 </div>
               </div>

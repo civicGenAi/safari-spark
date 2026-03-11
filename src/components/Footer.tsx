@@ -9,10 +9,10 @@ const Footer = () => (
         <div>
           <div className="flex items-center gap-2 mb-4">
             <span className="font-display text-xl font-bold tracking-[0.15em] text-foreground">KIM</span>
-            <span className="font-display text-xl font-bold tracking-[0.15em] text-primary">SAFARI</span>
+            <span className="font-display text-xl font-bold tracking-[0.15em] text-primary">SAFARIS</span>
           </div>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            Tanzania's premium transfer & safari route service. Arrive in style, explore in comfort.
+            Tanzania's premium transfer & safari route service. Arrive in style, explore in comfort. — Kim Safaris
           </p>
         </div>
 
@@ -58,7 +58,7 @@ const Footer = () => (
       </div>
 
       <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-        © 2025 Kim Safari. All rights reserved.
+        © 2025 Kim Safaris. All rights reserved.
       </div>
     </div>
   </footer>
