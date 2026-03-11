@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Plane, Building2, Compass, Users, Clock, ShieldCheck, MapPin, ChevronDown, Star, ArrowRight } from "lucide-react";
+import { Plane, Building2, Compass, Users, Clock, ShieldCheck, MapPin, ChevronDown, Star, ArrowRight, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import AnimatedSection from "@/components/AnimatedSection";
 import CountUp from "@/components/CountUp";
 import heroImage from "@/assets/hero-home.jpg";
 
 const reviews = [
-  { stars: 5, text: "Kim Safari made our Tanzania trip seamless. Driver was at the airport 20 mins early, vehicle spotless. Highly recommend!", name: "Sarah M.", flag: "🇬🇧", date: "Jan 2025" },
+  { stars: 5, text: "Kim Safaris made our Tanzania trip seamless. Driver was at the airport 20 mins early, vehicle spotless. Highly recommend!", name: "Sarah M.", flag: "🇬🇧", date: "Jan 2025" },
   { stars: 5, text: "Booked a private route to Serengeti gate. Professional, punctual and great company during the drive. Will use again.", name: "Johan K.", flag: "🇳🇱", date: "Feb 2025" },
   { stars: 5, text: "Best transfer service in Arusha. WhatsApp booking was so easy. Driver spoke good English and was very helpful.", name: "Amina T.", flag: "🇦🇪", date: "Mar 2025" },
   { stars: 5, text: "Arrived late at night, they were still there waiting. Felt safe the whole journey. True professionals.", name: "Lucas B.", flag: "🇩🇪", date: "Mar 2025" },
@@ -23,20 +23,49 @@ const routes = [
   { from: "Arusha", to: "Tarangire", landmark: "Tarangire NP" },
 ];
 
+const stats = [
+  { icon: Users, label: "Happy Clients", value: 200, suffix: "+" },
+  { icon: Globe, label: "Airports Covered", value: 3, suffix: "" },
+  { icon: Clock, label: "Availability", value: 24, suffix: "/7" },
+  { icon: ShieldCheck, label: "Safe Rides", value: 100, suffix: "%" },
+];
+
 const Index = () => {
   return (
     <main>
-      {/* Hero */}
+      {/* Hero — Cinematic */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <img src={heroImage} alt="Tanzania safari landscape" className="absolute inset-0 w-full h-full object-cover" loading="eager" />
+        {/* Cinematic Ken Burns zoom + pan on the hero image */}
+        <motion.img
+          src={heroImage}
+          alt="Tanzania safari landscape"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+          initial={{ scale: 1.3, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 3, ease: "easeOut" }}
+        />
+        {/* Cinematic letterbox bars */}
+        <motion.div
+          className="absolute top-0 left-0 right-0 bg-background z-20"
+          initial={{ height: "50%" }}
+          animate={{ height: "0%" }}
+          transition={{ duration: 1.6, delay: 0.4, ease: [0.76, 0, 0.24, 1] }}
+        />
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 bg-background z-20"
+          initial={{ height: "50%" }}
+          animate={{ height: "0%" }}
+          transition={{ duration: 1.6, delay: 0.4, ease: [0.76, 0, 0.24, 1] }}
+        />
         <div className="absolute inset-0 hero-overlay" />
         <div className="absolute inset-0 grain-overlay" />
-        
+
         <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, delay: 1.8 }}
             className="inline-flex items-center gap-2 text-primary text-sm font-body tracking-widest uppercase mb-6"
           >
             <span className="w-8 h-px bg-primary" />
@@ -47,7 +76,7 @@ const Index = () => {
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.2 }}
+            transition={{ duration: 0.9, delay: 2.0 }}
             className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight"
           >
             Arrive in Style,
@@ -58,7 +87,7 @@ const Index = () => {
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 2.2 }}
             className="text-muted-foreground text-lg sm:text-xl max-w-2xl mx-auto mb-10"
           >
             Premium airport transfers, hotel pickups & private safari routes across Tanzania and beyond.
@@ -67,7 +96,7 @@ const Index = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 2.4 }}
             className="flex flex-col sm:flex-row gap-4 justify-center"
           >
             <Button variant="gold" size="xl" asChild>
@@ -83,36 +112,38 @@ const Index = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+          transition={{ delay: 3 }}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
         >
           <span className="text-muted-foreground text-xs tracking-widest uppercase">Scroll</span>
           <ChevronDown size={20} className="text-primary animate-bounce" />
         </motion.div>
+      </section>
 
-        {/* Stats bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="absolute bottom-0 left-0 right-0 bg-surface-1/80 backdrop-blur-md border-t border-border"
-        >
-          <div className="container-max flex flex-wrap justify-center gap-8 sm:gap-16 py-4 px-4 text-center">
-            {[
-              { icon: Users, label: "Tourists Served", value: "500+" },
-              { icon: Clock, label: "Available", value: "24/7" },
-              { icon: Plane, label: "Major Airports", value: "3" },
-            ].map((stat) => (
-              <div key={stat.label} className="flex items-center gap-3">
-                <stat.icon size={20} className="text-primary" />
-                <div className="text-left">
-                  <div className="text-foreground font-semibold text-sm">{stat.value}</div>
-                  <div className="text-muted-foreground text-xs">{stat.label}</div>
+      {/* Stats — Creative Cards */}
+      <section className="relative -mt-16 z-30 px-4">
+        <div className="container-max">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {stats.map((s, i) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 2.6 + i * 0.15, duration: 0.6 }}
+                className="relative group bg-card/90 backdrop-blur-xl border border-border rounded-2xl p-6 text-center overflow-hidden hover:gold-border-glow transition-all duration-500"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative z-10">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 group-hover:bg-primary/20 transition-colors">
+                    <s.icon size={20} className="text-primary" />
+                  </div>
+                  <CountUp end={s.value} suffix={s.suffix} />
+                  <p className="text-muted-foreground text-xs mt-1 tracking-wide uppercase">{s.label}</p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* Services Overview */}
@@ -160,27 +191,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Trust Strip */}
-      <section className="py-16 bg-surface-1 border-y border-border">
-        <div className="container-max">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: 500, suffix: "+", label: "Happy Clients" },
-              { value: 3, suffix: "", label: "Airports Covered" },
-              { value: 24, suffix: "/7", label: "Availability" },
-              { value: 100, suffix: "%", label: "Safe Rides" },
-            ].map((s) => (
-              <div key={s.label} className="flex flex-col items-center gap-2">
-                <CountUp end={s.value} suffix={s.suffix} />
-                <span className="text-muted-foreground text-sm">{s.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Popular Routes */}
-      <section className="section-padding bg-background">
+      <section className="section-padding bg-surface-1 border-y border-border">
         <div className="container-max">
           <AnimatedSection>
             <div className="text-center mb-12">
@@ -215,7 +227,7 @@ const Index = () => {
       </section>
 
       {/* Reviews */}
-      <section className="section-padding bg-surface-1">
+      <section className="section-padding bg-background">
         <div className="container-max">
           <AnimatedSection>
             <div className="text-center mb-12">
@@ -246,9 +258,9 @@ const Index = () => {
 
           <AnimatedSection delay={0.4}>
             <div className="text-center mt-12">
-              <p className="text-foreground mb-4">Happy with Kim Safari? Help other travelers find us.</p>
+              <p className="text-foreground mb-4">Happy with Kim Safaris? Help other travelers find us.</p>
               <Button variant="gold" size="lg" asChild>
-                <a href="https://maps.google.com/?q=Kim+Safari+Arusha+Tanzania" target="_blank" rel="noopener noreferrer">
+                <a href="https://maps.google.com/?q=Kim+Safaris+Arusha+Tanzania" target="_blank" rel="noopener noreferrer">
                   Leave a Review on Google Maps
                 </a>
               </Button>
@@ -258,7 +270,7 @@ const Index = () => {
       </section>
 
       {/* Booking CTA */}
-      <section className="section-padding bg-background relative overflow-hidden">
+      <section className="section-padding bg-surface-1 relative overflow-hidden border-t border-border">
         <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-primary/5" />
         <div className="container-max relative z-10 text-center">
           <AnimatedSection>

@@ -84,7 +84,7 @@ const ContactPage = () => {
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
-                    title="Kim Safari Location - Arusha, Tanzania"
+                    title="Kim Safaris Location - Arusha, Tanzania"
                   />
                 </div>
               </div>

@@ -73,7 +73,7 @@ const ReviewsPage = () => (
                 </a>
               </Button>
               <Button variant="gold-outline" size="lg" asChild>
-                <a href="https://wa.me/255756997609?text=Hi! I'd like to recommend Kim Safari..." target="_blank" rel="noopener noreferrer">
+                <a href="https://wa.me/255756997609?text=Hi! I'd like to recommend Kim Safaris..." target="_blank" rel="noopener noreferrer">
                   <MessageCircle size={18} /> Recommend on WhatsApp
                 </a>
               </Button>
