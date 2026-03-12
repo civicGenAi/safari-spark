@@ -3,10 +3,10 @@ import { Star, ExternalLink, MessageCircle, Filter } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import PageHero from "@/components/PageHero";
 import AnimatedSection from "@/components/AnimatedSection";
+import { StarFieldDecoration } from "@/components/SvgDecorations";
 import heroImage from "@/assets/hero-reviews.jpg";
 
 const reviews = [
-  // Original / International
   { id: 1, stars: 5, text: "Kim Safaris made our Tanzania trip seamless. Driver was at the airport 20 mins early, vehicle spotless. Highly recommend!", name: "Sarah M.", flag: "🇬🇧", date: "Jan 2025" },
   { id: 2, stars: 5, text: "Booked a private route to Serengeti gate. Professional, punctual and great company during the drive. Will use again.", name: "Johan K.", flag: "🇳🇱", date: "Feb 2025" },
   { id: 3, stars: 5, text: "Best transfer service in Arusha. WhatsApp booking was so easy. Driver spoke good English and was very helpful.", name: "Amina T.", flag: "🇦🇪", date: "Mar 2025" },
@@ -22,8 +22,6 @@ const reviews = [
   { id: 13, stars: 5, text: "WhatsApp booking is a game-changer. Sent a text, got a quote, and the car was there exactly as promised.", name: "Sophie M.", flag: "🇨🇭", date: "Mar 2025" },
   { id: 14, stars: 5, text: "We used them for a multi-day private route. It was like having a local guide and driver in one. Fantastic!", name: "Oliver P.", flag: "🇳🇿", date: "Feb 2025" },
   { id: 15, stars: 5, text: "Simply the best in Arusha. I use them every time I fly in for work.", name: "James K.", flag: "🇰🇪", date: "Jan 2025" },
-
-  // Tanzanian / Local / Arusha specific
   { id: 16, stars: 5, text: "Excellent service from JRO. Driver was on time and very professional.", name: "Godfrey", flag: "🇹🇿", date: "Jan 2025" },
   { id: 17, stars: 5, text: "Always reliable when I have business guests arriving in Arusha. Top notch.", name: "Rehman", flag: "🇹🇿", date: "Feb 2025" },
   { id: 18, stars: 5, text: "Perfect timing. The car was incredibly clean and the driver drove very safely.", name: "Abdul Swamad", flag: "🇹🇿", date: "Mar 2025" },
@@ -43,7 +41,7 @@ const reviews = [
   { id: 32, stars: 5, text: "Excellent and very respectful drivers. Good knowledge of Arusha traffic.", name: "Mariam", flag: "🇹🇿", date: "Feb 2024" },
   { id: 33, stars: 4, text: "Helped us move some guests between hotels. Very efficient service.", name: "Emanuel", flag: "🇹🇿", date: "Jan 2024" },
   { id: 34, stars: 5, text: "The best luxury transfer option in town. Kim Safaris never disappoints.", name: "Zainab", flag: "🇹🇿", date: "Dec 2023" },
-  { id: 35, stars: 5, text: "Awesome experience riding with them to Tarangire. Safari started early!", name: "Godlisten", flag: "🇹🇿", date: "Nov 2023" }
+  { id: 35, stars: 5, text: "Awesome experience riding with them to Tarangire. Safari started early!", name: "Godlisten", flag: "🇹🇿", date: "Nov 2023" },
 ];
 
 const ReviewsPage = () => {
@@ -64,14 +62,42 @@ const ReviewsPage = () => {
         subtitle="Real experiences from real travelers who chose Kim Safaris."
       />
 
-      <section className="section-padding bg-background">
-        <div className="container-max">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Sidebar Filter (PC Only) */}
+      <section className="section-padding bg-background relative overflow-hidden">
+        <StarFieldDecoration className="absolute top-0 left-0 w-full h-[400px] text-primary" />
+
+        <div className="container-max relative z-10">
+          {/* Mobile Rating + Filter */}
+          <div className="lg:hidden mb-8">
+            <div className="text-center mb-6">
+              <div className="flex items-center justify-center gap-1 mb-2">
+                {Array.from({ length: 5 }).map((_, i) => (
+                  <Star key={i} size={20} className="text-primary fill-primary" />
+                ))}
+              </div>
+              <p className="font-display text-3xl font-bold text-foreground">4.8</p>
+              <p className="text-muted-foreground text-xs mt-1">Based on Google Reviews</p>
+            </div>
+            <div className="flex gap-2 justify-center">
+              {["All Views", "5 Stars", "4 Stars"].map((f) => (
+                <Button
+                  key={f}
+                  variant={filter === f ? "gold" : "outline"}
+                  size="sm"
+                  className={`text-xs ${filter === f ? "" : "bg-transparent border-border text-foreground hover:bg-surface-2"}`}
+                  onClick={() => setFilter(f)}
+                  type="button"
+                >
+                  {f}
+                </Button>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
+            {/* Desktop Sidebar */}
             <div className="hidden lg:block lg:col-span-1">
               <div className="sticky top-24 space-y-8">
                 <div className="bg-card border border-border rounded-2xl p-6">
-                  {/* Rating summary */}
                   <AnimatedSection>
                     <div className="text-center mb-8 pb-8 border-b border-border">
                       <div className="flex items-center justify-center gap-1 mb-2">
@@ -88,19 +114,14 @@ const ReviewsPage = () => {
                     <Filter size={18} className="text-primary" />
                     Filter Reviews
                   </h3>
-                  <div className="flex flex-col gap-2 relative z-10">
+                  <div className="flex flex-col gap-2">
                     {["All Views", "5 Stars", "4 Stars"].map((f) => (
                       <Button
                         key={f}
                         variant={filter === f ? "gold" : "outline"}
                         size="sm"
-                        className={`justify-start ${filter === f ? "" : "bg-transparent border-border text-foreground hover:bg-surface-2"
-                          } w-full`}
-                        onClick={(e) => {
-                          e.preventDefault();
-                          e.stopPropagation();
-                          setFilter(f);
-                        }}
+                        className={`justify-start ${filter === f ? "" : "bg-transparent border-border text-foreground hover:bg-surface-2"} w-full`}
+                        onClick={() => setFilter(f)}
                         type="button"
                       >
                         {f}
@@ -111,30 +132,19 @@ const ReviewsPage = () => {
               </div>
             </div>
 
-            {/* Main Reviews Grid */}
+            {/* Reviews Grid */}
             <div className="lg:col-span-3">
-              {/* Mobile Rating Summary (Hidden on PC) */}
-              <div className="lg:hidden text-center mb-10">
-                <div className="flex items-center justify-center gap-2 mb-2">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} size={24} className="text-primary fill-primary" />
-                  ))}
-                </div>
-                <p className="font-display text-4xl font-bold text-foreground">4.8</p>
-                <p className="text-muted-foreground text-sm mt-1">Based on Google Reviews</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                 {filteredReviews.map((r, i) => (
-                  <AnimatedSection key={`${r.name}-${i}`} delay={i * 0.05}>
-                    <div className="bg-card border border-border rounded-2xl p-6 hover:gold-border-glow transition-all duration-300 h-full flex flex-col">
-                      <div className="flex gap-1 mb-4">
+                  <AnimatedSection key={`${r.name}-${i}`} delay={i * 0.03}>
+                    <div className="bg-card border border-border rounded-2xl p-4 md:p-6 hover:gold-border-glow transition-all duration-300 h-full flex flex-col">
+                      <div className="flex gap-1 mb-3 md:mb-4">
                         {Array.from({ length: r.stars }).map((_, j) => (
-                          <Star key={j} size={14} className="text-primary fill-primary" />
+                          <Star key={j} size={12} className="text-primary fill-primary md:w-[14px] md:h-[14px]" />
                         ))}
                       </div>
-                      <p className="text-foreground text-sm leading-relaxed mb-6 italic flex-1">"{r.text}"</p>
-                      <div className="flex items-center justify-between text-xs text-muted-foreground mt-auto">
+                      <p className="text-foreground text-xs md:text-sm leading-relaxed mb-4 md:mb-6 italic flex-1">"{r.text}"</p>
+                      <div className="flex items-center justify-between text-[10px] md:text-xs text-muted-foreground mt-auto">
                         <span className="font-medium text-foreground">{r.name} {r.flag}</span>
                         <span>{r.date}</span>
                       </div>
@@ -146,22 +156,22 @@ const ReviewsPage = () => {
           </div>
 
           <AnimatedSection delay={0.4}>
-            <div className="mt-20 text-center bg-card border border-border rounded-2xl p-10 max-w-3xl mx-auto">
-              <h3 className="font-display text-2xl font-bold text-foreground mb-3">
+            <div className="mt-12 md:mt-20 text-center bg-card border border-border rounded-2xl p-6 md:p-10 max-w-3xl mx-auto">
+              <h3 className="font-display text-xl md:text-2xl font-bold text-foreground mb-3">
                 Traveled with Kim Safaris?
               </h3>
-              <p className="text-muted-foreground mb-8 text-lg">
+              <p className="text-muted-foreground mb-6 md:mb-8 text-sm md:text-lg">
                 Share your experience and help fellow travelers make the right choice.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button variant="gold" size="lg" asChild>
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center">
+                <Button variant="gold" size="default" className="w-full sm:w-auto text-xs md:text-sm" asChild>
                   <a href="https://maps.google.com/?q=Kim+Safaris+Arusha+Tanzania" target="_blank" rel="noopener noreferrer">
-                    <ExternalLink size={18} /> Write a Review on Google
+                    <ExternalLink size={16} /> Write a Review on Google
                   </a>
                 </Button>
-                <Button variant="gold-outline" size="lg" asChild>
+                <Button variant="gold-outline" size="default" className="w-full sm:w-auto text-xs md:text-sm" asChild>
                   <a href="https://wa.me/255756997609?text=Hi! I'd like to recommend Kim Safaris..." target="_blank" rel="noopener noreferrer">
-                    <MessageCircle size={18} /> Recommend on WhatsApp
+                    <MessageCircle size={16} /> Recommend on WhatsApp
                   </a>
                 </Button>
               </div>

@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-nav py-3 border-b border-border" : "bg-transparent py-5"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? "glass-nav py-2 md:py-3 border-b border-border" : "bg-transparent py-3 md:py-5"
           }`}
       >
         <div className="container-max flex items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -36,17 +36,17 @@ const Navbar = () => {
             <img
               src="/logo.png"
               alt="Kim Safaris Logo"
-              className="h-14 md:h-16 lg:h-20 w-auto transition-transform duration-500 group-hover:scale-105"
+              className="h-10 md:h-16 lg:h-20 w-auto transition-transform duration-500 group-hover:scale-105"
             />
           </Link>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6 lg:gap-8">
             {navLinks.map((link) => (
               <Link
                 key={link.path}
                 to={link.path}
-                className={`font-body text-sm tracking-wide transition-colors duration-300 hover:text-primary ${location.pathname === link.path
+                className={`font-body text-xs lg:text-sm tracking-wide transition-colors duration-300 hover:text-primary ${location.pathname === link.path
                   ? "text-primary"
                   : "text-muted-foreground"
                   }`}
@@ -65,7 +65,7 @@ const Navbar = () => {
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
       </nav>
@@ -77,7 +77,7 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 z-40 bg-background flex flex-col items-center justify-center gap-6"
           >
             {navLinks.map((link, i) => (
               <motion.div
@@ -88,7 +88,7 @@ const Navbar = () => {
               >
                 <Link
                   to={link.path}
-                  className={`font-display text-3xl tracking-wide transition-colors ${location.pathname === link.path
+                  className={`font-display text-2xl sm:text-3xl tracking-wide transition-colors ${location.pathname === link.path
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
                     }`}
